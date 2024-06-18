@@ -9,6 +9,11 @@ class App {
     public function __construct() {
         $this->router = new Router;
     }
+
+    public function get(string $path) {
+        $this->router->add('GET', $path);
+    }
+
     public function test() {
         echo "Running";
     }
