@@ -1,0 +1,12 @@
+{
+    "name": "yousef/phpiggy",
+    "description": "Application For Tracking Expenses",
+    "type": "project",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Framework\\": "src/Framework",
+            "App\\": "src/App"
+        }
+    }
+}
