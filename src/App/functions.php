@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 function dd(mixed $val) {
     echo '<pre>';

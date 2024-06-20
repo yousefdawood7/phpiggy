@@ -1,11 +1,11 @@
-<?php 
+<?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Controllers;
 
 class HomeController {
     public function home() {
-        
+        echo "Hello From The Controller";
     }
 }
