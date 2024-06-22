@@ -18,7 +18,7 @@ class Router {
     }
 
     public function dispatch(string $path, string $method) {
-        $path =  $this->normalize($path);
+        $path = $this->normalize($path);
         $method = strtoupper($method);
 
         foreach ($this->routes as $route) {

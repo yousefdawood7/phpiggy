@@ -1,18 +1,21 @@
 {
-    "name": "yousef/phpiggy",
-    "description": "Application For Tracking Expenses",
-    "type": "project",
-    "authors": [
-        {
-            "name": "Yousef Dawood",
-            "email": "yousefdawood31@gmail.com"
-        }
-    ],
-    "require": {},
-    "autoload": {
-        "psr-4": {
-            "Framework\\": "src/Framework",
-            "App\\": "src/App"
-        }
+  "name": "yousef/phpiggy",
+  "description": "Application For Tracking Expenses",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Yousef Dawood",
+      "email": "yousefdawood31@gmail.com"
     }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Framework\\": "src/Framework",
+      "App\\": "src/App"
+    },
+    "files": [
+      "src/App/Config/Routes.php"
+    ]
+  }
 }
