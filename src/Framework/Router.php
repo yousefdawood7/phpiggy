@@ -17,14 +17,15 @@ class Router {
         ];
     }
 
-    public function dispatch(string $path, string $method) {
+    public function dispatch(string $path, string $method, Container $container = NULL) {
         $path = $this->normalize($path);
         $method = strtoupper($method);
 
         foreach ($this->routes as $route) {
             if (preg_match("#^{$route['path']}$#", $path) && $route['method'] === $method) {
                 [$class, $function] = $route['controller'];
-                $classInstance = new $class;
+                $classInstance = $container ?
+                    $container->resolve($class) :  new $class;
                 $classInstance->{$function}();
             }
         }
