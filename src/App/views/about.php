@@ -8,7 +8,7 @@
     <hr />
 
     <!-- Escaping Data -->
-    <p>Escaping Data: <?= e($dan) ?></p>
+    <p>Escaping Data:</p>
 </section>
 <!-- End Main Content Area -->
 

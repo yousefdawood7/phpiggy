@@ -4,16 +4,18 @@ declare(strict_types=1);
 
 namespace Framework;
 
+use App\Config\Paths;
+
 class App {
     private Router $router;
     private Container $container;
 
-    function __construct(string $containerDefinition = NULL) {
+    function __construct(string $containerDefinitionPath = NULL) {
         $this->router = new Router;
         $this->container = new Container;
 
-        if ($containerDefinition) {
-            $definitions = include $containerDefinition;
+        if ($containerDefinitionPath) {
+            $definitions = include $containerDefinitionPath;
             $this->container->addDefinition($definitions);
         }
     }
@@ -27,5 +29,9 @@ class App {
 
     public function get(string $path, array $controller) {
         $this->router->add('GET', $path, $controller);
+    }
+
+    public function addMiddleware(string $middleware) {
+        $this->router->addMiddleware($middleware);
     }
 }

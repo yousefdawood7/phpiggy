@@ -6,6 +6,7 @@ namespace Framework;
 
 class Router {
     private array $routes = [];
+    private array $middlewares = [];
 
     public function add(string $method, string $path, array $controller) {
         $path = $this->normalize($path);
@@ -24,9 +25,16 @@ class Router {
         foreach ($this->routes as $route) {
             if (preg_match("#^{$route['path']}$#", $path) && $route['method'] === $method) {
                 [$class, $function] = $route['controller'];
-                $classInstance = $container ?
-                    $container->resolve($class) :  new $class;
-                $classInstance->{$function}();
+                $classInstance = $container ? $container->resolve($class) : new $class;
+                $action = fn () => $classInstance->{$function}();
+                foreach ($this->middlewares as $middleware) {
+                    $middlewareInstance = $container ?
+                        $container->resolve($middleware)
+                        : new $middleware;
+                    $action = fn () => $middlewareInstance->process($action);
+                }
+                $action();
+                return;
             }
         }
     }
@@ -36,5 +44,9 @@ class Router {
         $path = "/{$path}/";
         $path = preg_replace('#[/]{2,}#', '/', $path);
         return $path;
+    }
+
+    public function addMiddleware(string $middleware) {
+        $this->middlewares[] = $middleware;
     }
 }
