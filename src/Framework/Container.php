@@ -40,8 +40,8 @@ class Container {
                 throw new ContainerException("We Can't Determine Dependency of {$name}");
 
             $dependiences[] = $this->get($type->getName());
-            return $reflective->newInstanceArgs($dependiences);
         }
+        return $reflective->newInstanceArgs($dependiences);
     }
 
     public function get(string $id) {
