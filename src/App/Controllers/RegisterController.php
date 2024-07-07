@@ -9,9 +9,14 @@ use Framework\TemplateEngine;
 class RegisterController {
     public function __construct(private TemplateEngine $view) {
     }
-    public function register() {
+
+    public function registerView() {
         echo $this->view->render('register.php', [
             'title' => 'Register Page'
         ]);
+    }
+
+    public function register() {
+        dd($_POST);
     }
 }
